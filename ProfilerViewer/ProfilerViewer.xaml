@@ -1,0 +1,62 @@
+﻿<Window x:Class="ProfilerViewer.ProfilerViewerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModel="clr-namespace:ProfilerViewer.ViewModel"
+    xmlns:view="clr-namespace:ProfilerViewer.View"
+    Title="Profiler Data Viewer" WindowState="Maximized"
+    >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Common;component/Resources/ColorSchemes/Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Common;component/Resources/ResourceDictionaries/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Background="Gray">
+            <Grid.RowDefinitions>
+                <!--Buttons Panel-->
+                <RowDefinition Height="auto"/>
+                <!--GraphData-->
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="15"/>
+                <!--Step Details-->
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0"  BorderThickness="1" DockPanel.Dock="Top">
+                <StackPanel MaxHeight="32" Orientation="Horizontal">
+                    <Button Name="LoadProfilerDataButton"
+                            Width="32" Height="32" VerticalAlignment="Center"
+                            Command="{Binding LoadProfilerDataAction}">
+                        <Image Source="/ProfilerViewer;component/Resources/Images/open_icon.png" />
+                    </Button>
+                    <Button Name="AddGraphViewerButton"
+                            Width="32" Height="32" VerticalAlignment="Center"
+                            Visibility="{Binding AddGraphViewerButtonVisibility}"
+                            />
+                </StackPanel>
+            </Border>
+
+            <ItemsControl Grid.Row="1"
+                          VerticalAlignment="Center" HorizontalAlignment="Center"
+                          ItemsSource="{Binding GraphData}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:GraphViewModel}">
+                        <view:GraphView Margin="0,0,0,25"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <view:StepDetailsEntryView Grid.Row="3" DataContext="{Binding SelectedStepDetails}" />
+        </Grid>
+    </ScrollViewer>
+</Window>

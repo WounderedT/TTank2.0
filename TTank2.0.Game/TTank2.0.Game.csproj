@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FEE92E3D-E0F3-4F55-BF21-D501FFE199E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TTank20.Game</RootNamespace>
+    <AssemblyName>TTank2.0.Game</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpDX, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\SharpDX\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Desktop, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\SharpDX\SharpDX.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\SharpDX\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\SharpDX\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Toolkit, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\SharpDX.Toolkit\x86\Release\SharpDX.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Engine\DirectXInputExtensions.cs" />
+    <Compile Include="Engine\Platform\GameWindowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Engine\Platform\VideoMode\VideoSettingsManager.cs" />
+    <Compile Include="Engine\Utils\SpectatorCameraController.cs" />
+    <Compile Include="Game\GUI\MyGui.cs" />
+    <Compile Include="Game\World\Session.cs" />
+    <Compile Include="TTankGame.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TPresent.Library\TPresenter.Library.csproj">
+      <Project>{c86f2d2a-c42b-4d86-bcc2-b3d785cba4d0}</Project>
+      <Name>TPresenter.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter.Game\TPresenter.Game.csproj">
+      <Project>{d2f1c044-3b18-49bd-b7c1-087569a6fc7a}</Project>
+      <Name>TPresenter.Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter.Input\TPresenter.Input.csproj">
+      <Project>{9fbd8a90-f1be-4a31-9974-5f96f1f8284b}</Project>
+      <Name>TPresenter.Input</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter.Math\TPresenter.Math.csproj">
+      <Project>{237b0691-bc23-4d62-9063-dae5c3cedd55}</Project>
+      <Name>TPresenter.Math</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenterBase\TPresenter.Render.csproj">
+      <Project>{3694ea00-7d31-4635-b3f3-6dbeacda8eab}</Project>
+      <Name>TPresenter.Render</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter\TPresenter.csproj">
+      <Project>{8f49f628-ec1c-4e53-a8a2-95806f73a820}</Project>
+      <Name>TPresenter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

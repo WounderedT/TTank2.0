@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="ModelConverter.View.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:ModelConverter.View"
+             xmlns:viewModel="clr-namespace:ModelConverter.ViewModel"
+             mc:Ignorable="d" 
+             Style="{DynamicResource CustomUserControl}" d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:MainViewModel/>
+    </UserControl.DataContext>
+
+    <!--<UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Common;component/Resources/ColorSchemes/Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Common;component/Resources/ResourceDictionaries/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>-->
+
+    <Grid Margin="15"
+          AllowDrop="{Binding IsModelsListEnabled}" DragDrop.Drop="ItemsControl_Drop">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="15"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Height="25" Width="120"
+                    Content="Update Skinning" IsEnabled="{Binding AreButtonsEnable}"
+                    Command="{Binding FixOpenColladaAction}" />
+        </Grid>
+        <ItemsControl Grid.Row="2" 
+                      Height="30"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      ItemsSource="{Binding ResultsBarItem}"
+                      >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type viewModel:ResultBarViewModel}">
+                    <local:ResultBarView/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <ItemsControl Grid.Row="4"
+                      MinHeight="270" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      Background="LightGray" IsEnabled="{Binding IsModelsListEnabled}"
+                      ItemsSource="{Binding ModelsListDropFieldItems, Mode=TwoWay}"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type viewModel:ModelsListEntryViewModel}">
+                    <local:ModelsListEntryView/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Grid Grid.Row="6">
+            <Button HorizontalAlignment="Left"
+                    Height="25" Width="50"
+                    Content="Clear"
+                    Command="{Binding ClearModelsListAction}"
+                    />
+            <ProgressBar Height="25" Width="385" HorizontalAlignment="Right"
+                         Minimum="0" Maximum="100"
+                         Value="{Binding ProgressBarValue}"/>
+            
+        </Grid>
+    </Grid>
+</UserControl>
+

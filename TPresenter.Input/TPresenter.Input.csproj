@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FBD8A90-F1BE-4A31-9974-5F96F1F8284B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TPresenter.Input</RootNamespace>
+    <AssemblyName>TPresenter.Input</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>..\External\SharpDX.Toolkit\x64\Release\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Desktop">
+      <HintPath>..\External\SharpDX\SharpDX.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput">
+      <HintPath>..\External\SharpDX\SharpDX.DirectInput.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics">
+      <HintPath>..\External\SharpDX\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ControllerHelper.cs" />
+    <Compile Include="DirectInputExtensions.cs" />
+    <Compile Include="DirectXInput.cs" />
+    <Compile Include="EnumToString.cs" />
+    <Compile Include="Input\Control.cs" />
+    <Compile Include="Input\GuiInputDeviceEnum.cs" />
+    <Compile Include="Input\IControlNameLookup.cs" />
+    <Compile Include="Input\MyInput.cs" />
+    <Compile Include="Input\MouseButtonsEnum.cs" />
+    <Compile Include="Input\GuiControlTypeEnum.cs" />
+    <Compile Include="Input\Keys.cs" />
+    <Compile Include="Input\SharedButtonsEnum.cs" />
+    <Compile Include="KeyHasher.cs" />
+    <Compile Include="KeysToString.cs" />
+    <Compile Include="LocalizedKeyboardState.cs" />
+    <Compile Include="MyDirectInput.cs" />
+    <Compile Include="MyKeyboardBuffer.cs" />
+    <Compile Include="MyKeyboardState.cs" />
+    <Compile Include="MyMouseState.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowsKeyboard.cs" />
+    <Compile Include="WindowsMouse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TPresent.Library\TPresenter.Library.csproj">
+      <Project>{C86F2D2A-C42B-4D86-BCC2-B3D785CBA4D0}</Project>
+      <Name>TPresenter.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter.Game\TPresenter.Game.csproj">
+      <Project>{D2F1C044-3B18-49BD-B7C1-087569A6FC7A}</Project>
+      <Name>TPresenter.Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenterBase\TPresenter.Render.csproj">
+      <Project>{3694EA00-7D31-4635-B3F3-6DBEACDA8EAB}</Project>
+      <Name>TPresenter.Render</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter\TPresenter.csproj">
+      <Project>{8F49F628-EC1C-4E53-A8A2-95806F73A820}</Project>
+      <Name>TPresenter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

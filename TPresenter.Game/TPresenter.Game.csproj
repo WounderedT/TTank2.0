@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2F1C044-3B18-49BD-B7C1-087569A6FC7A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TPresenter.Game</RootNamespace>
+    <AssemblyName>TPresenter.Game</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpDX.Mathematics">
+      <HintPath>..\External\SharpDX\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actor\ActorEntity.cs" />
+    <Compile Include="Builders\Builder_ActorEntity.cs" />
+    <Compile Include="Builders\Builder_CubeEntity.cs" />
+    <Compile Include="Builders\Builder_CubeEntity_ObjectEntry.cs" />
+    <Compile Include="Builders\Builder_Entity.cs" />
+    <Compile Include="Builders\Builder_ObjectEntity.cs" />
+    <Compile Include="Builders\Builder_Scene.cs" />
+    <Compile Include="Builders\Builder_SkinnedEntity.cs" />
+    <Compile Include="Builders\EntityBuilderSerializer.cs" />
+    <Compile Include="EngineConstants.cs" />
+    <Compile Include="Attributes.cs" />
+    <Compile Include="Entities\CubeEntity.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Factory_Enitty.cs" />
+    <Compile Include="ControlSpace.cs" />
+    <Compile Include="Entities\ObjectEntity.cs" />
+    <Compile Include="Entities\SkinnedEntity.cs" />
+    <Compile Include="Interfaces\ICamera.cs" />
+    <Compile Include="Interfaces\ICameraController.cs" />
+    <Compile Include="Interfaces\IDrawableEntity.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IObjectEntity.cs" />
+    <Compile Include="Models\IntersectionResultLineTriangle.cs" />
+    <Compile Include="Scene\Scene.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Builders\Factory_EntityBase.cs" />
+    <Compile Include="Scene\SceneHelpers.cs" />
+    <Compile Include="Utils\Camera.cs" />
+    <Compile Include="Utils\CameraShake.cs" />
+    <Compile Include="Utils\CameraZoomProperties.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TPresent.Library\TPresenter.Library.csproj">
+      <Project>{C86F2D2A-C42B-4D86-BCC2-B3D785CBA4D0}</Project>
+      <Name>TPresenter.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter.Math\TPresenter.Math.csproj">
+      <Project>{237B0691-BC23-4D62-9063-DAE5C3CEDD55}</Project>
+      <Name>TPresenter.Math</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenterBase\TPresenter.Render.csproj">
+      <Project>{3694EA00-7D31-4635-B3F3-6DBEACDA8EAB}</Project>
+      <Name>TPresenter.Render</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter\TPresenter.csproj">
+      <Project>{8f49f628-ec1c-4e53-a8a2-95806f73a820}</Project>
+      <Name>TPresenter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

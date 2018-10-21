@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3694EA00-7D31-4635-B3F3-6DBEACDA8EAB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TPresenter.Render</RootNamespace>
+    <AssemblyName>TPresenter.Render</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>..\External\SharpDX.Toolkit\x64\Release\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.D3DCompiler">
+      <HintPath>..\External\SharpDX\SharpDX.D3DCompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Desktop">
+      <HintPath>..\External\SharpDX\SharpDX.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1">
+      <HintPath>..\External\SharpDX\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11">
+      <HintPath>..\External\SharpDX\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI">
+      <HintPath>..\External\SharpDX\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics">
+      <HintPath>..\External\SharpDX\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Toolkit, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\SharpDX.Toolkit\x86\Release\SharpDX.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animation\AnimationController.cs" />
+    <Compile Include="Animation\AnimationManager.cs" />
+    <Compile Include="Animation\MyAnimation.cs" />
+    <Compile Include="Animation\JointAnimation.cs" />
+    <Compile Include="Animation\KeyFrame.cs" />
+    <Compile Include="Common\EnvironmentMatrices.cs" />
+    <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\Helpers.cs" />
+    <Compile Include="Common\MyCommon.cs" />
+    <Compile Include="GeometryStage\Model\ColladaModel.cs" />
+    <Compile Include="GeometryStage\Model\collada_schema_1_4.cs" />
+    <Compile Include="GeometryStage\Model\ModelManager.cs" />
+    <Compile Include="GeometryStage\Model\ModelBufferManager.cs" />
+    <Compile Include="GeometryStage\Model\MeshStructures.cs" />
+    <Compile Include="GeometryStage\Instances\InstanceComponent.cs" />
+    <Compile Include="GeometryStage\Mapping.cs" />
+    <Compile Include="GeometryStage\Model\LoD.cs" />
+    <Compile Include="GeometryStage\Model\MyModel.cs" />
+    <Compile Include="GeometryStage\Model\Part.cs" />
+    <Compile Include="GeometryStage\Model\Skeleton.cs" />
+    <Compile Include="GeometryStage\MyVertexLayout.cs" />
+    <Compile Include="GeometryStage\Rendering\GeometryRender.cs" />
+    <Compile Include="GeometryStage\Rendering\RenderPass.cs" />
+    <Compile Include="GeometryStage\Rendering\ShaderResolver.cs" />
+    <Compile Include="GeometryStage\VertexInputComponent\VertexComponent.cs" />
+    <Compile Include="Messages\RenderMessageBase.cs" />
+    <Compile Include="Messages\RenderMessageSetRenderInstance.cs" />
+    <Compile Include="Messages\RenderMessageSetRenderInstanceSkinned.cs" />
+    <Compile Include="Messages\RenderMessageTypeEnum.cs" />
+    <Compile Include="Primitives\LinesRender.cs" />
+    <Compile Include="Primitives\PrimitivesRender.cs" />
+    <Compile Include="RenderContext\MyRenderContext.cs" />
+    <Compile Include="RenderContext\RenderContextState.cs" />
+    <Compile Include="MyMessageQueue.cs" />
+    <Compile Include="Render\Render11-DrawScene.cs" />
+    <Compile Include="Render\Render11-SwapChain.cs" />
+    <Compile Include="Render\Render11-DeviceManager.cs" />
+    <Compile Include="ExternalApp\IBufferedInputSource.cs" />
+    <Compile Include="ExternalApp\IRenderWindow.cs" />
+    <Compile Include="Lights\Light.cs" />
+    <Compile Include="RenderSettings.cs" />
+    <Compile Include="RenderProxy\MyRenderProxy.cs" />
+    <Compile Include="Render\Utils\DebugMessageRender.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Render\Render11.cs" />
+    <Compile Include="Render\Utils\MyList.cs" />
+    <Compile Include="Primitives\TextRender.cs" />
+    <Compile Include="Resources\Buffers\BufferManager.cs" />
+    <Compile Include="Resources\Buffers\MyBuffer.cs" />
+    <Compile Include="Resources\MyStrutures.cs" />
+    <Compile Include="Resources\MyTexture.cs" />
+    <Compile Include="Resources\ResourceInterface.cs" />
+    <Compile Include="Shader\MyMaterialShader.cs" />
+    <Compile Include="Shader\MyShaders.cs" />
+    <Compile Include="Shader\MyShaderStructures.cs" />
+    <Compile Include="VertexFormats.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="d3dcompiler_46.dll" />
+    <Content Include="Shaders\Common.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shaders\D3DX_DXGIFormatConvert.inl" />
+    <Content Include="Shaders\Geometry\TessellationCommon.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shaders\Geometry\Diffuse.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shaders\Geometry\BlinnPhong.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shaders\Geometry\Phong.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shaders\Geometry\VertexShader.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shaders\Geometry\SimplePixelShader.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shaders\Geometry\DepthPixelShader.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shaders\Primitives\Line.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TPresent.Library\TPresenter.Library.csproj">
+      <Project>{c86f2d2a-c42b-4d86-bcc2-b3d785cba4d0}</Project>
+      <Name>TPresenter.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter.Math\TPresenter.Math.csproj">
+      <Project>{237B0691-BC23-4D62-9063-DAE5C3CEDD55}</Project>
+      <Name>TPresenter.Math</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPresenter\TPresenter.csproj">
+      <Project>{8F49F628-EC1C-4E53-A8A2-95806F73A820}</Project>
+      <Name>TPresenter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Shaders\Primitives\Primitives.hlsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\MultipleTextures.DGSL" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(SolutionDir)$(SolutionName)\$(OutDir)Shaders\" rm "$(SolutionDir)$(SolutionName)\$(OutDir)Shaders\"
+mkdir "$(SolutionDir)$(SolutionName)\$(OutDir)Shaders\"
+copy /y /d "$(ProjectDir)Shaders\*.hlsl" "$(SolutionDir)$(SolutionName)\$(OutDir)Shaders\"
+copy /y /d "$(ProjectDir)Shaders\*.inl" "$(SolutionDir)$(SolutionName)\$(OutDir)Shaders\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

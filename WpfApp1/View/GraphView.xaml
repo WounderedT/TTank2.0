@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="ProfilerViewer.View.GraphView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:view="clr-namespace:ProfilerViewer.View"
+             xmlns:viewModel="clr-namespace:ProfilerViewer.ViewModel"
+             xmlns:command="clr-namespace:ProfilerViewer.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Background="LightGray">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox Grid.Row="0"
+            Name="StepSelectorComboBox"
+            Width="250" Height="25" VerticalAlignment="Top" HorizontalAlignment="Center"
+            ItemsSource="{Binding ProfilingSteps}" SelectedValue="{Binding SelectedProfilingStep, Mode=TwoWay}"
+            />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Canvas Grid.Row="0" Grid.Column="0"
+                    Height="{Binding AxisY}">
+                <Line Stroke="Black" StrokeThickness="1" X1="110" Y1="0" X2="110" Y2="{Binding AxisY}" />
+                <Line Stroke="Black" StrokeThickness="1" X1="105" Y1="{Binding MixLineY}" X2="110" Y2="{Binding MixLineY}" />
+                <Line Stroke="Black" StrokeThickness="1" X1="105" Y1="{Binding MaxLineY}" X2="110" Y2="{Binding MaxLineY}" />
+            </Canvas>
+
+            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource CommonLabelStyle}"
+                   Width="110" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="{Binding MinValueLabelMargin}"
+                   Content="{Binding MinValue}" TextBlock.TextAlignment="Right"
+                   />
+            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource CommonLabelStyle}"
+                   Width="110" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="{Binding MaxValueLabelMargin}"
+                   Content="{Binding MaxValue}" TextBlock.TextAlignment="Right"
+                   />
+
+            <Canvas Grid.Row="1" Grid.Column="1"
+                    Width="{Binding AxisX}" Height="30">
+                <Line Stroke="Black" StrokeThickness="1" X1="0" Y1="0" X2="{Binding AxisX}" Y2="0" />
+            </Canvas>
+
+            <Canvas Grid.Row="0" Grid.Column="1">
+                <Line Stroke="LightBlue" StrokeThickness="1" X1="0" Y1="{Binding MixLineY}" X2="{Binding AxisX}" Y2="{Binding MixLineY}" />
+                <Line Stroke="LightBlue" StrokeThickness="1" X1="0" Y1="{Binding MaxLineY}" X2="{Binding AxisX}" Y2="{Binding MaxLineY}" />
+                <Polyline Points="{Binding GraphPoints}" Stroke="Blue" StrokeThickness="2" />
+                <Rectangle 
+                    Stroke="Black" Fill="Black" Opacity="0.55" Visibility="{Binding StepDetailsSelectorVisibility}"
+                    Width="{Binding StepDetailsSelectorWidth}" Height="{Binding AxisY}" Canvas.Left="{Binding StepDetailsSelectorX}"
+                    />
+                <Rectangle Fill="White" Opacity="0" Width="{Binding AxisX}" Height="{Binding AxisY}" >
+                    <i:Interaction.Behaviors>
+                        <command:MouseBehaviour MouseX="{Binding StepDetailsSelectorX, Mode=OneWayToSource}" />
+                    </i:Interaction.Behaviors>
+                    <i:Interaction.Triggers>
+                        <!--This is a TERRIBLE solution. Must be updated/rewritten-->
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding SelectorEventHandlerCommand}" CommandParameter="StepDetailsSelectorShow"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding SelectorEventHandlerCommand}" CommandParameter="StepDetailsSelectorHide"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding SelectorEventHandlerCommand}" CommandParameter="ShowIterationDetails" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Rectangle>
+            </Canvas>
+        </Grid>
+        
+        <ComboBox Grid.Row="2"
+                  Name="GraphScaleSelectorComboBox"
+                  Width="65" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 25, 0"
+                  ItemsSource="{Binding GrapScales}" SelectedValue="{Binding SelectedGrapScale, Mode=TwoWay}"
+                  />
+        <Label Grid.Row="2" Style="{StaticResource CommonLabelStyle}"
+               Height="25" HorizontalAlignment="Left" Margin="25,0,0,0"
+               Content="{Binding AbsoluteMinimumLabelText}"
+               />
+        <Label Grid.Row="2" Style="{StaticResource CommonLabelStyle}"
+               Height="25" HorizontalAlignment="Center"
+               Content="{Binding AbsoluteMaximumLabelText}"
+               />
+    </Grid>
+
+</UserControl>
