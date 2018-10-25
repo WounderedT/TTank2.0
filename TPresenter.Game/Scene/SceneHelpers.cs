@@ -141,8 +141,6 @@ namespace TPresenter.Game
             builderFemale.SkeletonId = StringId.GetOrCompute(@"characters\common\default-skeleton-female");
             builderFemale.ModelParts = new List<StringId>(1);
             builderFemale.ModelParts.Add(StringId.GetOrCompute(@"characters\female\female-torso-default"));
-            builderFemale.ModelParts.Add(StringId.GetOrCompute(@"characters\female\female-hands-default"));
-            builderFemale.ModelParts.Add(StringId.GetOrCompute(@"characters\female\female-feet-default"));
             builderFemale.ModelParts.Add(StringId.GetOrCompute(@"characters\female\female-head-default"));
             builderFemale.ModelParts.Add(StringId.GetOrCompute(@"characters\female\female-hair-default"));
 

@@ -16,11 +16,6 @@ namespace ModelConverter
 
         public static async Task<ColladaProcessorResult> ProcessColladaFile(String modelPath)
         {
-            //return await Task.Factory.StartNew(
-            //    () => ProcessColladaFileInternal(modelPath), 
-            //    CancellationToken.None, 
-            //    TaskCreationOptions.None, 
-            //    TaskScheduler.FromCurrentSynchronizationContext());
             return await Task.Run(() => ProcessColladaFileInternal(modelPath));
         }
 
@@ -30,7 +25,7 @@ namespace ModelConverter
             {
                 COLLADA model = COLLADA.Load(modelPath);
                 var skeletonParts = UpdateSkeleton(model);
-                if(skeletonParts == null)
+                if (skeletonParts.Count == 0)
                 {
                     return new ColladaProcessorResult(modelPath, "No skeleton information found!");
                 }
@@ -45,10 +40,9 @@ namespace ModelConverter
                 }
                 return new ColladaProcessorResult(modelPath);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return new ColladaProcessorResult(modelPath, ex);
             }
         }
 
@@ -60,7 +54,7 @@ namespace ModelConverter
             //First node in OPENCOllada file is EnvironmentAmbientLight. Skipping.
             if(visualScene.node.Length == 1)
             {
-                return null;
+                return skeletonParts;
             }
             Node skeletonNodes = visualScene.node[1];
             ProcessNode(skeletonNodes, skeletonParts);
@@ -74,11 +68,14 @@ namespace ModelConverter
 
         private static void UpdateControllers(COLLADA model, Dictionary<String, String> skeletonParts)
         {
-            var skin = (COLLADA.FindEntryByType<library_controllers>(model).controller[0].Item as Skin).source[0];
-            var joints = skin.Item as Name_array;
-            for(UInt64 ind = 0; ind < joints.count; ind++)
+            foreach(Controller controller in COLLADA.FindEntryByType<library_controllers>(model).controller)
             {
-                joints.Values[ind] = skeletonParts[joints.Values[ind]];
+                var skin = (controller.Item as Skin).source[0];
+                var joints = skin.Item as Name_array;
+                for(UInt64 ind = 0; ind < joints.count; ind++)
+                {
+                    joints.Values[ind] = skeletonParts[joints.Values[ind]];
+                }
             }
         }
 

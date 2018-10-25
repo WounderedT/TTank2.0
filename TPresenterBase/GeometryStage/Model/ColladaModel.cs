@@ -304,7 +304,7 @@ namespace TPresenter.Render.GeometryStage.Model
                 }
 
                 Single sum = vertex.BoneWeights.Sum();
-                if (sum != 1)
+                if (sum > 1)
                 {
                     for (int j = 0; j < vertex.BoneWeights.Length; j++)
                         vertex.BoneWeights[j] /= sum;

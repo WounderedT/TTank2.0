@@ -40,7 +40,7 @@ namespace TPresenter.Game
         {
             XmlSerializer serializer = XmlSerializerManager.GetOrCreateSerializer(typeof(Builder_Scene));
             Builder_Scene sceneEntity;
-            using (System.Xml.XmlReader xReader = System.Xml.XmlReader.Create(Path.Combine(FileProvider.ContentPath, id.String + ".xml")))
+            using (XmlReader xReader = XmlReader.Create(Path.Combine(FileProvider.ContentPath, id.String + ".xml")))
                 sceneEntity = serializer.Deserialize(xReader) as Builder_Scene;
             _sceneBuilders.Add(sceneEntity.Id, sceneEntity);
         }
